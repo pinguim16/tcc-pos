@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Pesquisa de recicladores
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label>Estados</ion-label>
+    <ion-select (ionChange)="buscaCidade($event)" placeholder="Selecione um estado">
+      <ion-select-option *ngFor="let estado of estados">{{estado.nome}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Cidades</ion-label>
+    <ion-select (ionChange)="buscaEmpresas($event)" placeholder="Selecione uma cidade">
+      <ion-select-option *ngFor="let cidade of cidades">{{cidade.nome}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-title>Recicladoras Encontradas</ion-title>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+<!-- List of Text Items -->
+<ion-item>
+    
+</ion-item>
+
+<ion-button expand="full" color="success">Pesquisar</ion-button>
+
+</ion-content>

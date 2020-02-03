@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 
 import com.jaunt.NotFound;
@@ -51,11 +52,11 @@ public class CrawlingReciclaveis {
 	public void crawCoop(Integer est) throws NotFound {
 		this.crawlingSiteReciclaveis(URL_COOPERATIVAS, URL_PAGINAS_COOP, est);
 	}
-	
+
 	public void crawSuc(Integer est) throws NotFound {
 		this.crawlingSiteReciclaveis(URL_SUCATEIROS, URL_PAGINAS_SUC, est);
 	}
-	
+
 	public void crawRec(Integer est) throws NotFound {
 		this.crawlingSiteReciclaveis(URL_RECICLADORES, URL_PAGINAS_R, est);
 	}

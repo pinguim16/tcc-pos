@@ -2,17 +2,7 @@ package com.reciclaveltcc.models;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "empresa")
@@ -55,6 +45,12 @@ public class Empresa {
     {@JoinColumn(name="empresa_id")}, inverseJoinColumns=
       {@JoinColumn(name="material_id")})
 	private List<Material> materials;
+
+	@Transient
+	private String categoriaMateriaisStr;
+
+	@Transient
+	private String materiaisStr;
 	
 	public Empresa() {}
 
@@ -146,5 +142,21 @@ public class Empresa {
 
 	public void setTipoEmpresa(String tipoEmpresa) {
 		this.tipoEmpresa = tipoEmpresa;
+	}
+
+	public String getCategoriaMateriaisStr() {
+		return categoriaMateriaisStr;
+	}
+
+	public void setCategoriaMateriaisStr(String categoriaMateriaisStr) {
+		this.categoriaMateriaisStr = categoriaMateriaisStr;
+	}
+
+	public String getMateriaisStr() {
+		return materiaisStr;
+	}
+
+	public void setMateriaisStr(String materiaisStr) {
+		this.materiaisStr = materiaisStr;
 	}
 }

@@ -13,6 +13,6 @@ public interface CidadeRepository extends JpaRepository<Cidade, Long>  {
 	
 	Cidade findByNome(String nome);
 	
-	List<Cidade> findByEstado(Estado estado);
+	List<Cidade> findByEstadoOrderByNome(Estado estado);
 
 }

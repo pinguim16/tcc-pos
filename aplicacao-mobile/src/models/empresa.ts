@@ -1,7 +1,6 @@
-import { Cidade } from './cidade';
-import { Estado } from './estado';
-import { CategoriaMaterial } from './categoria.material';
-import { Material } from './material';
+import {Cidade} from './cidade';
+import {CategoriaMaterial} from './categoria.material';
+import {Material} from './material';
 
 export class Empresa {
 
@@ -12,9 +11,7 @@ export class Empresa {
     telefone: string;
     cep: string;
     cidade: Cidade;
-    estado: Estado;
-    tipoEmpresa:string;
-    categoriaMaterial: CategoriaMaterial[] ;
-    material:Material[];   
-
+    tipoEmpresa: string;
+    categoriaMateriaisStr: string;
+    materiaisStr: string;
 }

@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <h2 style="font-family: cursive"><ion-icon name="leaf"></ion-icon> Cadastro</h2>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+
+  <ion-item>
+    <ion-label>Estados</ion-label>
+    <ion-select (ionChange)="buscaCidade($event)" [(ngModel)]="estadoId" placeholder="Selecione um estado">
+      <ion-select-option *ngFor="let estado of estados">{{estado.nome}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Cidades</ion-label>
+    <ion-select [(ngModel)]="cidadeId" placeholder="Selecione uma cidade">
+      <ion-select-option *ngFor="let cidade of cidades" value="{{cidade.id}}">{{cidade.nome}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- List of Text Items -->
+
+  <ion-list *ngIf="empresas.length > 0">
+    <ion-list-header>{{empresas.length}} Recicladoras Encontradas</ion-list-header>
+    <ion-item *ngFor="let empresa of empresas">
+      <ion-label>
+        <h2>Nome : {{empresa.nome}} - Telefone : {{empresa.telefone}} </h2>
+        <h3>Endereço : {{empresa.endereco}}</h3>
+        <p><span *ngIf="empresa.bairro.length > 0">Bairro : {{empresa.bairro}} - </span><span *ngIf="empresa.cidade.nome.length > 0"> Cidade : {{empresa.cidade.nome}} </span>
+            <span *ngIf="empresa.cidade.estado.nome.length > 0"> - Estado : {{empresa.cidade.estado.nome}} </span> <span *ngIf="empresa.cep && empresa.cep.length > 0">  CEP : {{empresa.cep}} </span>  </p>
+        <p *ngIf="empresa.tipoEmpresa && empresa.tipoEmpresa.length > 0">Tipo Empresa : {{empresa.tipoEmpresa}}</p>
+        <p *ngIf="empresa.categoriaMateriaisStr && empresa.categoriaMateriaisStr.length > 0">Categoria de Materias : {{empresa.categoriaMateriaisStr}}</p>
+        <p style="white-space: normal" *ngIf="empresa.materiaisStr && empresa.materiaisStr.length > 0">Materiais : {{empresa.materiaisStr}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <section>
+    <ion-button expand="block" color="success" (click)="buscaEmpresas()"><ion-icon name="search"></ion-icon>Pesquisar</ion-button>
+    <ion-button expand="block" color="danger" (click)="limparPesquisa()"><ion-icon name="trash"></ion-icon>Limpar Pesquisa</ion-button>
+  </section>
+</ion-content>

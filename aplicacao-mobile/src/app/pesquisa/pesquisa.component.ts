@@ -6,11 +6,11 @@ import {Cidade} from 'src/models/cidade';
 import {AlertController} from "@ionic/angular";
 
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  selector: 'app-pesquisa',
+  templateUrl: 'pesquisa.component.html',
+  styleUrls: ['pesquisa.component.scss']
 })
-export class Tab2Page {
+export class PesquisaComponent {
 
   empresas: Empresa[] = [];
   estados: Estado[] = [];

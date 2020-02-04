@@ -1,0 +1,26 @@
+
+<ion-content>
+    <ion-card class="welcome-card">
+      <img src="/assets/reci.jpg" alt="" />
+      <ion-card-header>
+        <ion-card-title style="font-family: cursive; text-align: center">Recicle</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+
+  <ion-card>
+    <ion-item>
+      <ion-label position="fixed">Usuário</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Senha</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+  </ion-card>
+  <ion-button expand="full" color="success" [routerLink]="['pesquisa']"><ion-icon name="log-in"></ion-icon>Entrar</ion-button>
+  <ion-button expand="full" color="warning"><ion-icon name="trash"></ion-icon>Limpar</ion-button>
+  <ion-button expand="full" color="primary" [routerLink]="['cadastro']"><ion-icon name="person-add"></ion-icon>Cadastrar</ion-button>
+
+
+</ion-content>

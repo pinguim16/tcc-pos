@@ -3,11 +3,9 @@ package com.reciclaveltcc.controller;
 import java.util.List;
 
 import com.reciclaveltcc.models.*;
+import com.reciclaveltcc.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.jaunt.NotFound;
 import com.reciclaveltcc.CrawlingReciclaveis;
@@ -30,6 +28,9 @@ public class ApiController {
 	
 	@Autowired
 	private CidadeRepository cidadeRepository;
+
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 	
 	@GetMapping("/banco/coop/{estado}")
 	public String crawCoop(@PathVariable Integer estado) throws NotFound {
@@ -57,6 +58,30 @@ public class ApiController {
 	public List<Cidade> findByEstado(@PathVariable Long idEstado){
 		Estado estado = this.estadoRepository.findById(idEstado).get();
 		return this.cidadeRepository.findByEstadoOrderByNome(estado);
+	}
+
+	@PostMapping("/usuario/cadastrar")
+	public Usuario cadastrarUsuario(@RequestBody Usuario usuario){
+		return this.usuarioRepository.save(usuario);
+	}
+
+	@PostMapping("/usuario/validaUsuario")
+	public Usuario validaSenhaUsuario(@RequestBody Usuario usuario){
+		Usuario usuBd = this.usuarioRepository.findByLogin(usuario.getLogin());
+		if(usuBd == null){
+			usuario.setError(Boolean.TRUE);
+			usuario.setMensagem("Usuário não existe");
+			return usuario;
+		}else if (usuBd != null && usuario != null
+				&& usuBd.getSenha() != null && !usuBd.getSenha().isEmpty()
+				&& usuario.getSenha() != null && !usuario.getSenha().isEmpty()
+				&& usuario.getSenha().equals(usuBd.getSenha())){
+			usuario.setError(Boolean.FALSE);
+		}else{
+			usuario.setError(Boolean.TRUE);
+			usuario.setMensagem("Usuário ou Senha incorretas !");
+		}
+		return usuario;
 	}
 	
 	@GetMapping("/empresas/{idCidade}")
